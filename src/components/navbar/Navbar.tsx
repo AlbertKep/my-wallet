@@ -1,7 +1,7 @@
 import house from "../../assets/icons/house.svg";
 import statistic from "../../assets/icons/statistic.svg";
 import transaction from "../../assets/icons/transaction.svg";
-import { Navigation, List, Item, StyledNavLink } from "./Navbar.styled";
+import { Navigation, List, Item, StyledNavLink } from "./Navbar.styled.ts";
 
 const Navbar = () => {
   return (
