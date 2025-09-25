@@ -9,6 +9,7 @@ declare module "styled-components" {
       darkBlue: string;
       red: string;
       green: string;
+      lightBeige: string;
     };
     font: {
       family: {
