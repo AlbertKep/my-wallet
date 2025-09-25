@@ -8,6 +8,7 @@ export const theme: DefaultTheme = {
     darkBlue: "#021F40",
     red: "#FF2031",
     green: "#0AAB55",
+    lightBeige: "#FEF1DF",
   },
   font: {
     family: {
