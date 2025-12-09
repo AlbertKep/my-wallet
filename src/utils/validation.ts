@@ -1,6 +1,7 @@
 export type Errors = {
   email?: string;
   password?: string;
+  general?: string;
 };
 export const validate = (email: string, password: string) => {
   const errors: Errors = {};
