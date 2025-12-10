@@ -48,11 +48,3 @@ export const AuthLinkHint = styled.p`
   text-align: center;
   margin-top: 2em;
 `;
-
-export const TextError = styled.p<{ $visible?: boolean }>`
-  min-height: 1em;
-  color: ${({ theme }) => theme.colors.red};
-  font-size: clamp(0.6rem, 0.6rem + 0.5vw, 1rem);
-  transition: opacity 0.2s ease;
-  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
-`;
