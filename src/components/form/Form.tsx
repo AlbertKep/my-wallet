@@ -3,14 +3,15 @@ import { StyledForm, BackgroundWrapper, StyledButton, AuthLinkHint } from "./For
 
 type FormProps = {
   children: ReactNode;
+  submitLabel: string;
   handleSubmit: (event: FormEvent) => Promise<void>;
 };
-const Form: React.FC<FormProps> = ({ children, handleSubmit }) => {
+const Form: React.FC<FormProps> = ({ children, submitLabel, handleSubmit }) => {
   return (
     <>
       <StyledForm onSubmit={handleSubmit}>
         <BackgroundWrapper>{children}</BackgroundWrapper>
-        <StyledButton>Register</StyledButton>
+        <StyledButton>{submitLabel}</StyledButton>
       </StyledForm>
       <AuthLinkHint>Have an account? Sign in!</AuthLinkHint>
     </>
