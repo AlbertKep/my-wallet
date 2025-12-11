@@ -1,0 +1,54 @@
+import { useState, type FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
+import Form from "../../components/form/Form.tsx";
+import FormField from "../../components/formField/FormField.tsx";
+import AuthLinkHint from "../../components/authLinkHint/AuthLinkHint.tsx";
+import { TextError } from "../register/Register.ts";
+import { validate, type Errors } from "../../utils/validation.ts";
+import { signInUser } from "../../services/auth.ts";
+
+const SignIn = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<Errors>({});
+  const navigate = useNavigate();
+
+  const handleEmailChange = (value: string) => setEmail(value);
+  const handlePasswordChange = (value: string) => setPassword(value);
+
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    const { errors, hasErrors } = validate(email, password);
+    if (hasErrors) {
+      setError(errors);
+      return;
+    }
+
+    const { authError } = await signInUser(email, password);
+    if (authError) {
+      setError((prev) => ({ ...prev, general: authError }));
+      return;
+    }
+    navigate("/dashboard");
+  };
+  return (
+    <>
+      <Form handleSubmit={handleSubmit} submitLabel='Sign in'>
+        <FormField id='email' name='E-mail' label='email' type='text' value={email} onValueChange={handleEmailChange} error={error.email} />
+        <FormField
+          id='password'
+          name='Password'
+          label='password'
+          type='password'
+          value={password}
+          onValueChange={handlePasswordChange}
+          error={error.password}
+        />
+        {error.general && <TextError $visible={!!error.general}>{error.general}</TextError>}
+      </Form>
+      <AuthLinkHint message={"Have an account?"} linkText={"Register!"} linkTo={"/register"} />
+    </>
+  );
+};
+
+export default SignIn;
