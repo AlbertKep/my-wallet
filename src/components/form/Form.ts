@@ -40,11 +40,3 @@ export const StyledButton = styled(Button)`
   margin-top: 2em;
   padding: 1em 0;
 `;
-
-export const AuthLinkHint = styled.p`
-  color: ${({ theme }) => theme.colors.white};
-  font-size: clamp(1rem, 1rem + 0.5vw, 2rem);
-  font-weight: 600;
-  text-align: center;
-  margin-top: 2em;
-`;

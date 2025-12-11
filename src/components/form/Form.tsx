@@ -1,5 +1,5 @@
 import type { ReactNode, FormEvent } from "react";
-import { StyledForm, BackgroundWrapper, StyledButton, AuthLinkHint } from "./Form.ts";
+import { StyledForm, BackgroundWrapper, StyledButton } from "./Form.ts";
 
 type FormProps = {
   children: ReactNode;
@@ -13,7 +13,7 @@ const Form: React.FC<FormProps> = ({ children, submitLabel, handleSubmit }) => {
         <BackgroundWrapper>{children}</BackgroundWrapper>
         <StyledButton>{submitLabel}</StyledButton>
       </StyledForm>
-      <AuthLinkHint>Have an account? Sign in!</AuthLinkHint>
+      {/* <AuthLinkHint message={"Have an account?"} linkText={"Register!"} linkTo={"/register"} /> */}
     </>
   );
 };
