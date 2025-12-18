@@ -1,4 +1,4 @@
-import { AuthLinkWrapper, AuthLink } from "./AuthLinkHint.ts";
+import { AuthLinkWrapper, AuthLink } from "./AuthLinkHint.styled.ts";
 
 type AuthLinkHintProps = {
   message: string;

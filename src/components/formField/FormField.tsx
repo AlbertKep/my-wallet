@@ -1,5 +1,5 @@
-import { FieldsWrapper, Label, Input } from "./FormField.ts";
-import { TextError } from "../ui/TextError.ts";
+import { FieldsWrapper, Label, Input } from "./FormField.styled.ts";
+import { TextError } from "../ui/TextError.styled.ts";
 
 type FormFieldsProps = {
   id: string;

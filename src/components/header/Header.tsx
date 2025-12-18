@@ -1,12 +1,13 @@
 import wallet from "../../assets/icons/wallet.svg";
-import { Button } from "../ui/Button.ts";
-import { StyledHeader, Wrapper, Heading, ButtonWrapper } from "./Header.ts";
+import { Button } from "../ui/Button.styled.ts";
+import { StyledHeader, Wrapper, Heading, ButtonWrapper } from "./Header.styled.ts";
 
 const Header = () => {
+  console.log("Header mounted");
   return (
     <StyledHeader>
       <Wrapper>
-        <img src={wallet} alt="wallet icon" />
+        <img src={wallet} alt='wallet icon' />
         <Heading>My Wallet</Heading>
       </Wrapper>
       <ButtonWrapper>
