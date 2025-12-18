@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Form from "../../components/form/Form.tsx";
 import FormField from "../../components/formField/FormField.tsx";
 import AuthLinkHint from "../../components/authLinkHint/AuthLinkHint.tsx";
-import { TextError } from "../register/Register.ts";
+import { TextError } from "../../components/ui/TextError.styled.ts";
 import { validate, type Errors } from "../../utils/validation.ts";
 import { signInUser } from "../../services/auth.ts";
 
