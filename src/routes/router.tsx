@@ -13,7 +13,8 @@ export const router = createBrowserRouter(
     <Route path='/' element={<App />}>
       {/* Public routes */}
       <Route element={<PublicLayout />}>
-        <Route path='/' element={<Register />} />
+        <Route index element={<Register />} /> {/* "/" -> Register */}
+        <Route path='register' element={<Register />} />
         <Route path='signin' element={<SignIn />} />
       </Route>
 
