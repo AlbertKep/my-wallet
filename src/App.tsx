@@ -1,11 +1,13 @@
+import { Outlet } from "react-router-dom";
 import { GlobalStyle } from "./assets/styles/GlobalStyles.ts";
-import ThemeProvider from "./ThemeProvider.tsx";
+import Theme from "./ThemeProvider.tsx";
+
 const App = () => {
   return (
-    <ThemeProvider>
+    <Theme>
       <GlobalStyle />
-      <h1>Hello World</h1>
-    </ThemeProvider>
+      <Outlet />
+    </Theme>
   );
 };
 
