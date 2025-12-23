@@ -1,5 +1,5 @@
 import { auth } from "./firebase.ts";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, type User, type UserCredential } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, type User, type UserCredential } from "firebase/auth";
 
 type SignInResult = {
   user?: UserCredential;
@@ -33,3 +33,5 @@ export const signInUser = async (email: string, password: string): Promise<SignI
     }
   }
 };
+
+export const logout = () => signOut(auth);
