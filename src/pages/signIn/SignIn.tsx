@@ -4,6 +4,7 @@ import Form from "../../components/form/Form.tsx";
 import FormField from "../../components/formField/FormField.tsx";
 import AuthLinkHint from "../../components/authLinkHint/AuthLinkHint.tsx";
 import { TextError } from "../../components/ui/TextError.styled.ts";
+import { FlexWrapper } from "../../components/ui/FlexWrapper.styled.ts";
 import { validate, type Errors } from "../../utils/validation.ts";
 import { signInUser } from "../../services/auth.ts";
 
@@ -32,7 +33,7 @@ const SignIn = () => {
     navigate("/dashboard");
   };
   return (
-    <>
+    <FlexWrapper>
       <Form handleSubmit={handleSubmit} submitLabel='Sign in'>
         <FormField id='email' name='E-mail' label='email' type='text' value={email} onValueChange={handleEmailChange} error={error.email} />
         <FormField
@@ -47,7 +48,7 @@ const SignIn = () => {
         {error.general && <TextError $visible={!!error.general}>{error.general}</TextError>}
       </Form>
       <AuthLinkHint message={"Have an account?"} linkText={"Register!"} linkTo={"/register"} />
-    </>
+    </FlexWrapper>
   );
 };
 
