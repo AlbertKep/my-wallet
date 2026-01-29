@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
-  padding: 1em 0.5em;
+  padding: clamp(0.5rem, 1rem + 1vw, 2rem) clamp(0.5rem, 0.5rem + 0.5vw, 1rem);
 `;
 
 export const Heading = styled.h1`
