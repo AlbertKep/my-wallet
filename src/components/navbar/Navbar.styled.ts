@@ -11,16 +11,18 @@ export const Navigation = styled.nav`
   margin: auto;
 
   ${({ theme }) => theme.mq.desktop} {
-    height: 90svh;
+    height: clamp(400px, 70vh, 900px);
+    position: static;
+    flex: 1;
+    justify-content: normal;
   }
 `;
 
 export const List = styled.ul`
   background-color: ${({ theme }) => theme.colors.darkBlue};
-  width: clamp(280px, 300px + 5vw, 80%);
   margin: 0;
-  padding: 0.2em 0.6em;
-  border-radius: 50px;
+  padding: 0.2em 1em;
+  border-radius: 25px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -28,9 +30,8 @@ export const List = styled.ul`
 
   ${({ theme }) => theme.mq.desktop} {
     flex-direction: column;
-    align-items: center;
     justify-content: normal;
-    padding-top: 3em;
+    padding-top: 1em;
   }
 `;
 
@@ -38,6 +39,7 @@ export const Item = styled.li`
   cursor: pointer;
   text-align: center;
   flex: 1;
+  padding: 0 0.5em;
 
   &:hover {
     transform: scale(1.05);
@@ -48,15 +50,6 @@ export const Item = styled.li`
   ${({ theme }) => theme.mq.desktop} {
     flex: 0;
     margin-bottom: 1em;
-
-    a {
-      display: flex;
-      align-items: center;
-    }
-
-    img {
-      width: 75px;
-    }
   }
 `;
 export const StyledNavLink = styled(NavLink)`
@@ -68,7 +61,7 @@ export const StyledNavLink = styled(NavLink)`
   }
   span {
     display: block;
-    font-size: clamp(0.5rem, 0.5rem + 1vw, 3rem);
+    font-size: clamp(0.5rem, 0.5rem + 1vw, 1.25rem);
   }
 
   ${({ theme }) => theme.mq.desktop} {
@@ -76,7 +69,7 @@ export const StyledNavLink = styled(NavLink)`
     align-items: center;
 
     img {
-      width: 75px;
+      width: 50px;
     }
   }
 `;
