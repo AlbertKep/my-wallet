@@ -1,4 +1,5 @@
 import type { ReactNode, FormEvent } from "react";
+import Logo from "../logo/Logo.tsx";
 import { StyledForm, BackgroundWrapper, StyledButton } from "./Form.styled.ts";
 
 type FormProps = {
@@ -9,6 +10,7 @@ type FormProps = {
 const Form: React.FC<FormProps> = ({ children, submitLabel, handleSubmit }) => {
   return (
     <>
+      <Logo />
       <StyledForm onSubmit={handleSubmit}>
         <BackgroundWrapper>{children}</BackgroundWrapper>
         <StyledButton>{submitLabel}</StyledButton>
