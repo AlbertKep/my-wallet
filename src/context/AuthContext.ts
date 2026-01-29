@@ -4,6 +4,7 @@ import type { User } from "firebase/auth";
 interface AuthContextType {
   user: User | null;
   loading: boolean;
+  logoutUser: () => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
