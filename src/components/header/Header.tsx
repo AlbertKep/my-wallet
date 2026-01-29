@@ -5,12 +5,19 @@ import { Button } from "../ui/Button.styled.ts";
 import { StyledHeader, ButtonWrapper } from "./Header.styled.ts";
 
 const Header = () => {
+  const { logoutUser } = useAuth();
+
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    logoutUser();
+    navigate("/signin");
+  };
   console.log("Header mounted");
   return (
     <StyledHeader>
       <Logo />
       <ButtonWrapper>
-        <Button>Logout</Button>
+        <Button onClick={handleLogout}>Logout</Button>
       </ButtonWrapper>
     </StyledHeader>
   );
