@@ -3,6 +3,7 @@ import { Button } from "../../components/ui/Button.styled.ts";
 
 export const StyledForm = styled.form`
   margin: 2em 1em;
+  width: clamp(280px, 50vw, 600px);
 `;
 
 export const BackgroundWrapper = styled.div`
