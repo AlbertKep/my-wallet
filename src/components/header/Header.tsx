@@ -6,10 +6,7 @@ const Header = () => {
   console.log("Header mounted");
   return (
     <StyledHeader>
-      <Wrapper>
-        <img src={wallet} alt='wallet icon' />
-        <Heading>My Wallet</Heading>
-      </Wrapper>
+      <Logo />
       <ButtonWrapper>
         <Button>Logout</Button>
       </ButtonWrapper>
