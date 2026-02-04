@@ -13,8 +13,8 @@ const ProtectedLayout = () => {
     <>
       <Header />
       <LayoutWrapper>
-        <Navbar />
         <Outlet />
+        <Navbar />
       </LayoutWrapper>
     </>
   );
