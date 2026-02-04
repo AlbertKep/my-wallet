@@ -20,6 +20,10 @@ export const GlobalStyle = createGlobalStyle`
     background: linear-gradient(rgba(177, 52, 201, 1) 10%, rgba(252, 70, 107, 1) 100%);
   }
 
+  ul {
+    padding: 0;
+  }
+
   li {
     list-style-type: none;
   }
