@@ -3,16 +3,13 @@ import { NavLink } from "react-router-dom";
 
 export const Navigation = styled.nav`
   opacity: 0.6;
-  position: fixed;
-  bottom: 20px;
   width: 100%;
   display: flex;
   justify-content: center;
   margin: auto;
 
   ${({ theme }) => theme.mq.desktop} {
-    height: clamp(400px, 70vh, 900px);
-    position: static;
+    height: clamp(400px, 70vh, 1000px);
     flex: 1;
     justify-content: normal;
   }
