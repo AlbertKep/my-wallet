@@ -2,7 +2,10 @@ import styled from "styled-components";
 
 export const LayoutWrapper = styled.div`
   ${({ theme }) => theme.mq.desktop} {
+    max-width: 1700px;
     display: flex;
-    margin: 0 1.5em;
+    align-items: center;
+    flex-direction: row-reverse;
+    margin: 0 1em;
   }
 `;
