@@ -1,8 +1,9 @@
 import { useState, useEffect, type ReactNode } from "react";
 import { onAuthStateChanged, type User } from "firebase/auth";
-import { logout } from "../services/auth.ts";
-import { auth } from "../services/firebase.ts";
+import { logout } from "../../services/auth.ts";
+import { auth } from "../../services/firebase.ts";
 import { AuthContext } from "./AuthContext.ts";
+
 type AuthContextProps = {
   children: ReactNode;
 };
