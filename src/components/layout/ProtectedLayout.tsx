@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import Header from "../header/Header.tsx";
 import Navbar from "../navbar/Navbar.tsx";
-import { useAuth } from "../../context/AuthContext.ts";
+import { useAuth } from "../../context/auth/AuthContext.ts";
 import { LayoutWrapper } from "../ui/LayoutWrapper.styled.ts";
 
 const ProtectedLayout = () => {
