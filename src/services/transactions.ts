@@ -9,6 +9,7 @@ export type Transaction = {
   type: string;
   userID: string;
 };
+export type TransactionWithId = Transaction & { transactionID: string };
 
 type TransactionsCallback = (snapshot: QuerySnapshot<DocumentData>) => void;
 
