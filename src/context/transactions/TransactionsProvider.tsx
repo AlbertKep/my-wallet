@@ -1,6 +1,6 @@
 import { useState, useEffect, type ReactNode } from "react";
 import { subscribeToTransactions } from "../../services/transactions.ts";
-import type { Transaction } from "../../services/transactions.ts";
+import type { TransactionWithId } from "../../services/transactions.ts";
 import { TransactionsContext } from "./TransactionsContext.ts";
 import { useAuth } from "../auth/AuthContext.ts";
 type TransactionsContextProps = {
@@ -8,7 +8,7 @@ type TransactionsContextProps = {
 };
 
 export const TransactionsProvider: React.FC<TransactionsContextProps> = ({ children }) => {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [transactions, setTransactions] = useState<TransactionWithId[]>([]);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
 
@@ -21,10 +21,10 @@ export const TransactionsProvider: React.FC<TransactionsContextProps> = ({ child
     setLoading(true);
 
     const unsubscribe = subscribeToTransactions(user.uid, (snapshot) => {
-      const items: Transaction[] = [];
+      const items: TransactionWithId[] = [];
 
       snapshot.forEach((doc) => {
-        items.push(doc.data() as Transaction);
+        items.push({ transactionID: doc.id, ...doc.data() } as TransactionWithId);
       });
 
       setTransactions(items);
