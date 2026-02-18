@@ -6,12 +6,13 @@ export const StyledItem = styled.li`
   border-bottom: 2px solid lightgrey;
   padding: 0.5em 0;
   gap: 1em;
+`;
 
-  p {
-    flex: 2;
-    font-size: clamp(0.5rem, 1rem + 0.75vw, 1.25rem);
-    text-align: center;
-  }
+export const StyledPrice = styled.p<{ $type?: string }>`
+  flex: 2;
+  font-size: clamp(0.5rem, 1rem + 0.75vw, 1.25rem);
+  text-align: center;
+  color: ${({ theme, $type }) => ($type === "income" ? theme.colors.green : theme.colors.red)};
 `;
 export const ImageWrapper = styled.div`
   img {
