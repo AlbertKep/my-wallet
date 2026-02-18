@@ -1,8 +1,8 @@
-import type { Transaction } from "../../services/transactions.ts";
+import type { TransactionWithId } from "../../services/transactions.ts";
 import { createSafeContext } from "../../utils/createContextHook.ts";
 
 interface TransactionsContextType {
-  transactions: Transaction[];
+  transactions: TransactionWithId[];
   loading: boolean;
 }
 
