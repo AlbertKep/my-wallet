@@ -1,24 +1,20 @@
-import { StyledItem, ImageWrapper, InfoWrapper } from "./TransactionItem.styled.ts";
+import { StyledItem, StyledPrice, ImageWrapper, InfoWrapper } from "./TransactionItem.styled.ts";
+import { type Transaction } from "../../services/transactions.ts";
+import { getCategoryIcon } from "../../utils/getCategoryIcon.ts";
+import { formatDate } from "../../utils/formatDate.ts";
 
-type TransactionProps = {
-  icon: string;
-  alt: string;
-  title: string;
-  date: string;
-  price: number;
-};
-const TransactionItem: React.FC<TransactionProps> = ({ icon, alt, title, date, price }) => {
+const TransactionItem: React.FC<Transaction> = ({ category, title, date, price, type }) => {
   return (
     <StyledItem>
       <ImageWrapper>
-        <img src={icon} alt={alt} />
+        <img src={getCategoryIcon(category)} alt={category} />
       </ImageWrapper>
 
       <InfoWrapper>
         <h5>{title}</h5>
-        <time>{date}</time>
+        <time>{formatDate(date.seconds)}</time>
       </InfoWrapper>
-      <p>{price} zł</p>
+      <StyledPrice $type={type}>{price} zł</StyledPrice>
     </StyledItem>
   );
 };
