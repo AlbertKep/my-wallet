@@ -10,6 +10,7 @@ declare module "styled-components" {
       red: string;
       green: string;
       lightBeige: string;
+      warmBeige: string;
     };
     font: {
       family: {
