@@ -6,16 +6,17 @@ type FormFieldsProps = {
   name: string;
   label: string;
   type: string;
-  value: string;
+  value: string | number;
   error?: string;
+  className?: string;
   onValueChange: (value: string) => void;
 };
 
-const FormField: React.FC<FormFieldsProps> = ({ id, name, label, type, value, error, onValueChange }) => {
+const FormField: React.FC<FormFieldsProps> = ({ id, name, label, type, value, className, error, onValueChange }) => {
   return (
-    <FieldsWrapper>
-      <Label htmlFor={label}>{name}</Label>
-      <Input type={type} id={id} value={value} onChange={(e) => onValueChange(e.target.value)} />
+    <FieldsWrapper className={className}>
+      <Label htmlFor={id}>{label}</Label>
+      <Input type={type} id={id} name={name} value={value} onChange={(e) => onValueChange(e.target.value)} />
       {error && <TextError $visible={!!error}>{error}</TextError>}
     </FieldsWrapper>
   );
