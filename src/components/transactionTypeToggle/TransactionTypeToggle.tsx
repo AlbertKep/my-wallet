@@ -1,4 +1,4 @@
-import { TypeWrapper, TypeOption } from "./TransactionTypeToogle.styled.ts";
+import { TypeWrapper, TypeOption } from "./TransactionTypeToggle.styled.ts";
 import { type TransactionFieldUpdate } from "../../pages/addTransaction/AddTransaction.tsx";
 
 type TransactionTypeToggleProps = {
