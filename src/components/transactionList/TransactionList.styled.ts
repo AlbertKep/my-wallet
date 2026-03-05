@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { SectionWrapper } from "../ui/SectionWrapper.styled.ts";
 
-export const Wrapper = styled.div`
+export const StyledSectionWrapper = styled(SectionWrapper)`
   background-color: ${({ theme }) => theme.colors.lightBeige};
   border-radius: 12px;
   margin: 0 0.5em;
