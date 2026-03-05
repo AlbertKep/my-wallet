@@ -1,0 +1,46 @@
+import { useState } from "react";
+import { DropdownCategoryWrapper, SelectedCategory, DropdownArrow, CategoryList, CategoryItem } from "./DropdownCategory.styled.ts";
+import dropdownArrow from "../../assets/icons/dropdown_arrow.svg";
+import { type Category } from "../../data/categoriesData.ts";
+import { type TransactionFieldUpdate } from "../../pages/addTransaction/AddTransaction.tsx";
+
+type DropdownCategoryProps = {
+  selectedCategory: string;
+  categories: Category[];
+  updateField: ({ field, value }: TransactionFieldUpdate) => void;
+};
+
+const DropdownCategory: React.FC<DropdownCategoryProps> = ({ selectedCategory, categories, updateField }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const selectedCategoryOject = categories.find((cat) => cat.label === selectedCategory);
+
+  const handleChooseCategory = (category: string) => {
+    updateField({ field: "category", value: category });
+    setIsOpen((prev) => !prev);
+  };
+
+  return (
+    <DropdownCategoryWrapper>
+      <SelectedCategory onClick={() => setIsOpen((prev) => !prev)}>
+        <p>
+          <img src={selectedCategoryOject?.icon} alt={selectedCategoryOject?.label} />
+          <span>{selectedCategoryOject?.label}</span>
+        </p>
+
+        <DropdownArrow src={dropdownArrow} alt='dropdown arrow' $isOpen={isOpen} />
+      </SelectedCategory>
+
+      <CategoryList $isOpen={isOpen}>
+        {categories?.map((category) => (
+          <CategoryItem key={category.id} onClick={() => handleChooseCategory(category.label)}>
+            <img src={category.icon} alt={category.label} />
+            <span>{category.label}</span>
+          </CategoryItem>
+        ))}
+      </CategoryList>
+    </DropdownCategoryWrapper>
+  );
+};
+
+export default DropdownCategory;
