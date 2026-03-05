@@ -1,7 +1,7 @@
 import { StyledItem, StyledPrice, ImageWrapper, InfoWrapper } from "./TransactionItem.styled.ts";
 import { type Transaction } from "../../services/transactions.ts";
 import { getCategoryIcon } from "../../utils/getCategoryIcon.ts";
-import { formatDate } from "../../utils/formatDate.ts";
+import { formatDate } from "../../utils/dateConverters.ts";
 
 const TransactionItem: React.FC<Transaction> = ({ category, title, date, price, type }) => {
   return (
