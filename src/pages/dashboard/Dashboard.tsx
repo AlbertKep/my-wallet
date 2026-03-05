@@ -9,7 +9,7 @@ const Dashboard = () => {
   if (loading) return <p>Loading...</p>;
   return (
     <MainSection>
-      <BalanceSummary />
+      <BalanceSummary transactions={transactions} />
       <TransactionList transactions={transactions} />
     </MainSection>
   );
