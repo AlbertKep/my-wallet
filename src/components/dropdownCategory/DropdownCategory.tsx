@@ -13,7 +13,7 @@ type DropdownCategoryProps = {
 const DropdownCategory: React.FC<DropdownCategoryProps> = ({ selectedCategory, categories, updateField }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const selectedCategoryOject = categories.find((cat) => cat.label === selectedCategory);
+  const selectedCategoryOject = categories.find((cat) => cat.id === selectedCategory);
 
   const handleChooseCategory = (category: string) => {
     updateField({ field: "category", value: category });
@@ -33,7 +33,7 @@ const DropdownCategory: React.FC<DropdownCategoryProps> = ({ selectedCategory, c
 
       <CategoryList $isOpen={isOpen}>
         {categories?.map((category) => (
-          <CategoryItem key={category.id} onClick={() => handleChooseCategory(category.label)}>
+          <CategoryItem key={category.id} onClick={() => handleChooseCategory(category.id)}>
             <img src={category.icon} alt={category.label} />
             <span>{category.label}</span>
           </CategoryItem>
