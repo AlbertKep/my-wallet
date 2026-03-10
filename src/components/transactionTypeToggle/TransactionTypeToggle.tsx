@@ -8,7 +8,7 @@ type TransactionTypeToggleProps = {
 const TransactionTypeToggle: React.FC<TransactionTypeToggleProps> = ({ selectedType, updateField }) => {
   const isExpense = selectedType === "expense";
 
-  const handleChooseType = (type: string) => updateField({ field: "type", value: type });
+  const selectType = (type: string) => updateField({ field: "type", value: type });
 
   return (
     <TypeWrapper>
