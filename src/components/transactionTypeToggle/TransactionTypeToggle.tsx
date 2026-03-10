@@ -12,10 +12,10 @@ const TransactionTypeToggle: React.FC<TransactionTypeToggleProps> = ({ selectedT
 
   return (
     <TypeWrapper>
-      <TypeOption $active={isExpense} onClick={() => handleChooseType("expense")}>
+      <TypeOption type='button' $active={isExpense} onClick={() => selectType("expense")}>
         Expense
       </TypeOption>
-      <TypeOption $active={!isExpense} onClick={() => handleChooseType("income")}>
+      <TypeOption type='button' $active={!isExpense} onClick={() => selectType("income")}>
         Income
       </TypeOption>
     </TypeWrapper>
