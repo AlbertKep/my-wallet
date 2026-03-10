@@ -5,7 +5,7 @@ import FormField from "../../components/formField/FormField.tsx";
 import AuthLinkHint from "../../components/authLinkHint/AuthLinkHint.tsx";
 import { TextError } from "../../components/ui/TextError.styled.ts";
 import { FlexWrapper } from "../../components/ui/FlexWrapper.styled.ts";
-import { validate, type Errors } from "../../utils/validation.ts";
+import { authValidate, type Errors } from "../../utils/validation/authValidate.ts";
 import { signInUser } from "../../services/auth.ts";
 
 const SignIn = () => {
@@ -19,7 +19,7 @@ const SignIn = () => {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    const { errors, hasErrors } = validate(email, password);
+    const { errors, hasErrors } = authValidate(email, password);
     if (hasErrors) {
       setError(errors);
       return;
