@@ -1,5 +1,17 @@
 import { db } from "./firebase.ts";
-import { collection, query, where, limit, type Timestamp, type QuerySnapshot, type DocumentData, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  limit,
+  addDoc,
+  serverTimestamp,
+  type Timestamp,
+  type QuerySnapshot,
+  type DocumentData,
+  onSnapshot,
+  orderBy,
+} from "firebase/firestore";
 
 export type Transaction = {
   category: string;
