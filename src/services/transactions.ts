@@ -20,13 +20,15 @@ export type Transaction = {
   title: string;
   type: string;
   userID: string;
+  createdAt?: Timestamp;
+  updatedAt?: Timestamp;
 };
 export type TransactionWithId = Transaction & { transactionID: string };
 
 type TransactionsCallback = (snapshot: QuerySnapshot<DocumentData>) => void;
 
 export const subscribeToTransactions = (userID: string, callback: TransactionsCallback) => {
-  const transactionQuery = query(collection(db, "transactions"), where("userID", "==", userID), limit(5));
+  const transactionQuery = query(collection(db, "transactions"), where("userID", "==", userID), orderBy("createdAt", "desc"), limit(5));
 
   return onSnapshot(transactionQuery, callback);
 };
