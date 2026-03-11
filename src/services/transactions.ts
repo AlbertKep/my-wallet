@@ -32,3 +32,17 @@ export const subscribeToTransactions = (userID: string, callback: TransactionsCa
 
   return onSnapshot(transactionQuery, callback);
 };
+
+export const addTransaction = async (newTransaction: Transaction) => {
+  try {
+    await addDoc(collection(db, "transactions"), { ...newTransaction, createdAt: serverTimestamp(), updatedAt: serverTimestamp() });
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+      alert(error.message);
+    } else {
+      console.error("Unexpected error", error);
+    }
+    return null;
+  }
+};
