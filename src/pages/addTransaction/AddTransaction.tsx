@@ -12,6 +12,7 @@ import { categories } from "../../data/categoriesData.ts";
 import { Timestamp } from "firebase/firestore";
 import { useAuth } from "../../context/auth/AuthContext.ts";
 import { addTransaction } from "../../services/transactions.ts";
+import { transactionValidate, type TransactionErrors } from "../../utils/validation/transactionValidate.ts";
 
 export type TransactionFieldUpdate = {
   field: keyof TransactionForm;
@@ -38,6 +39,7 @@ const AddTransaction = () => {
     type: "expense",
     userID: "",
   });
+  const [errors, setErrors] = useState<TransactionErrors>();
 
   const updateField = ({ field, value }: TransactionFieldUpdate) => {
     setTransaction((prev) => ({ ...prev, [field]: value }));
@@ -45,7 +47,11 @@ const AddTransaction = () => {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    await addTransaction(transaction);
+    const { errors, hasErrors } = transactionValidate(transaction.title, transaction.price);
+    if (hasErrors) {
+      setErrors(errors);
+      return;
+    }
 
     navigate("/dashboard");
   };
@@ -70,7 +76,7 @@ const AddTransaction = () => {
               type='text'
               value={transaction.title}
               onValueChange={(value) => updateField({ field: "title", value })}
-              // error={error.password}>
+              error={errors?.title}
             />
             <PriceFormField
               id='price'
@@ -78,8 +84,8 @@ const AddTransaction = () => {
               label='Price'
               type='number'
               value={transaction.price}
-              onValueChange={(value) => updateField({ field: "price", value: Number(value) })}
-              // error={error.password}>
+              onValueChange={(value) => updateField({ field: "price", value })}
+              error={errors?.price}
             />
             <DropdownCategory categories={categories} selectedCategory={transaction.category} updateField={updateField} />
             <TransactionTypeToggle selectedType={transaction.type} updateField={updateField} />
