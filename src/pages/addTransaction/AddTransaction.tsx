@@ -9,20 +9,28 @@ import TransactionTypeToggle from "../../components/transactionTypeToggle/Transa
 import DatePicker from "../../components/datePicker/DatePicker.tsx";
 import { categories } from "../../data/categoriesData.ts";
 
-import { type Transaction } from "../../services/transactions.ts";
 import { Timestamp } from "firebase/firestore";
 import { useAuth } from "../../context/auth/AuthContext.ts";
 import { addTransaction } from "../../services/transactions.ts";
 
 export type TransactionFieldUpdate = {
-  field: keyof Transaction;
-  value: Transaction[keyof Transaction];
+  field: keyof TransactionForm;
+  value: TransactionForm[keyof TransactionForm];
+};
+
+export type TransactionForm = {
+  category: string;
+  date: Timestamp;
+  price: string;
+  title: string;
+  type: string;
+  userID: string;
 };
 
 const AddTransaction = () => {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
-  const [transaction, setTransaction] = useState<Transaction>({
+  const [transaction, setTransaction] = useState<TransactionForm>({
     category: categories[0].id,
     date: Timestamp.now(),
     price: 0,
