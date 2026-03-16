@@ -34,7 +34,7 @@ const AddTransaction = () => {
   const [transaction, setTransaction] = useState<TransactionForm>({
     category: categories[0].id,
     date: Timestamp.now(),
-    price: 0,
+    price: "",
     title: "",
     type: "expense",
     userID: "",
@@ -42,6 +42,7 @@ const AddTransaction = () => {
   const [errors, setErrors] = useState<TransactionErrors>();
 
   const updateField = ({ field, value }: TransactionFieldUpdate) => {
+    if (field === "title" || field === "price") setErrors((prev) => ({ ...prev, [field]: "" }));
     setTransaction((prev) => ({ ...prev, [field]: value }));
   };
 
@@ -82,7 +83,7 @@ const AddTransaction = () => {
               id='price'
               name='price'
               label='Price'
-              type='number'
+              type='text'
               value={transaction.price}
               onValueChange={(value) => updateField({ field: "price", value })}
               error={errors?.price}
