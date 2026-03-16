@@ -54,6 +54,7 @@ const AddTransaction = () => {
       return;
     }
 
+    await addTransaction({ ...transaction, price: Number(transaction.price) });
     navigate("/dashboard");
   };
 
