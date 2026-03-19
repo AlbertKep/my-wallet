@@ -10,6 +10,7 @@ export const theme: DefaultTheme = {
     green: "#0AAB55",
     lightBeige: "#FEF1DF",
     warmBeige: "#f3e2c7",
+    lightPink: "#f48fb1",
   },
   font: {
     family: {
