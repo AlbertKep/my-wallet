@@ -13,6 +13,7 @@ import { Timestamp } from "firebase/firestore";
 import { useAuth } from "../../context/auth/AuthContext.ts";
 import { addTransaction } from "../../services/transactions.ts";
 import { transactionValidate, type TransactionErrors } from "../../utils/validation/transactionValidate.ts";
+import Loader from "../../components/loader/Loader.tsx";
 
 export type TransactionFieldUpdate = {
   field: keyof TransactionForm;
@@ -64,7 +65,7 @@ const AddTransaction = () => {
     }
   }, [user?.uid]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loader />;
   return (
     <MainSection>
       <SectionWrapper>
