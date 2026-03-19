@@ -6,7 +6,7 @@ export const StyledLoader = styled.div`
   aspect-ratio: 1;
   border-radius: 50%;
   padding: 1px;
-  background: ${({ theme }) => `conic-gradient(${theme.colors.white} 10%, ${theme.colors.pinkLight}) content-box`};
+  background: ${({ theme }) => `conic-gradient(${theme.colors.white} 10%, ${theme.colors.lightPink}) content-box`};
   -webkit-mask:
     repeating-conic-gradient(#0000 0deg, #000 1deg 20deg, #0000 21deg 36deg),
     radial-gradient(farthest-side, #0000 calc(100% - var(--b) - 1px), #000 calc(100% - var(--b)));
