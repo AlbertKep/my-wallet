@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "styled-components";
+import { Wrapper, TextWrapper, Heading, Balance, ChartWrapper } from "./BalanceSummary.styled.ts";
+import BalanceChart from "../balanceChart/BalanceChart.tsx";
 import { type TransactionWithId } from "../../services/transactions.ts";
 
 type TransactionListProps = {
@@ -44,9 +46,9 @@ const BalanceSummary: React.FC<TransactionListProps> = ({ transactions }) => {
         <Balance>{balance} zł</Balance>
       </TextWrapper>
 
-      <ImgWrapper>
-        <img src={balanceChart} alt='Balance chart icon' />
-      </ImgWrapper>
+      <ChartWrapper>
+        <BalanceChart isAnimationActive balanceChartData={balanceChartData} />
+      </ChartWrapper>
     </Wrapper>
   );
 };
