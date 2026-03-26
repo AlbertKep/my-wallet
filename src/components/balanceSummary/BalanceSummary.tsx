@@ -1,14 +1,20 @@
-import balanceChart from "../../assets/icons/balance_chart.svg";
-import { Wrapper, TextWrapper, Heading, Balance, ImgWrapper } from "./BalanceSummary.styled.ts";
-import { type TransactionWithId } from "../../services/transactions.ts";
 import { useState, useEffect } from "react";
+import { useTheme } from "styled-components";
+import { type TransactionWithId } from "../../services/transactions.ts";
 
 type TransactionListProps = {
   transactions: TransactionWithId[];
 };
 
+export type BalanceChartDataProps = {
+  name: string;
+  value: number;
+  fill: string;
+};
 const BalanceSummary: React.FC<TransactionListProps> = ({ transactions }) => {
+  const theme = useTheme();
   const [balance, setBalance] = useState(0);
+  const [balanceChartData, setBalanceChartData] = useState<BalanceChartDataProps[]>([]);
 
   useEffect(() => {
     const getBalance = () => {
@@ -21,6 +27,12 @@ const BalanceSummary: React.FC<TransactionListProps> = ({ transactions }) => {
         { income: 0, expense: 0 },
       );
       setBalance(income - expense);
+      const data = [
+        { name: "income", value: income, fill: theme.colors.green },
+        { name: "expense", value: expense, fill: theme.colors.red },
+      ];
+
+      setBalanceChartData(data);
     };
     getBalance();
   }, [transactions]);
