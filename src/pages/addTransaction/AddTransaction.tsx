@@ -13,6 +13,8 @@ import { Timestamp } from "firebase/firestore";
 import { useAuth } from "../../context/auth/AuthContext.ts";
 import { addTransaction } from "../../services/transactions.ts";
 import { transactionValidate, type TransactionErrors } from "../../utils/validation/transactionValidate.ts";
+import { getCategoryIcon } from "../../utils/getCategoryIcon.ts";
+import { showToast } from "../../utils/showToast.tsx";
 import Loader from "../../components/loader/Loader.tsx";
 
 export type TransactionFieldUpdate = {
@@ -56,6 +58,9 @@ const AddTransaction = () => {
     }
 
     await addTransaction({ ...transaction, price: Number(transaction.price) });
+
+    const icon = getCategoryIcon(transaction.category);
+    showToast(`Added ${transaction.title}`, icon);
     navigate("/dashboard");
   };
 
