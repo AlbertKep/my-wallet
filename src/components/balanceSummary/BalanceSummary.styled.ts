@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
   padding: 0 0.5em;
 
   ${({ theme }) => theme.mq.desktop} {
+    width: 300px;
     flex-direction: column-reverse;
     justify-content: space-evenly;
   }
@@ -31,8 +32,6 @@ export const Balance = styled.p`
   letter-spacing: 2px;
 `;
 
-export const ImgWrapper = styled.div`
-  img {
-    width: clamp(90px, 15vw, 350px);
-  }
+export const ChartWrapper = styled.div`
+  width: clamp(90px, 20vw, 150px);
 `;
