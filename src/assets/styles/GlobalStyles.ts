@@ -27,4 +27,8 @@ export const GlobalStyle = createGlobalStyle`
   li {
     list-style-type: none;
   }
+
+  .recharts-surface, .recharts-sector {
+  outline: none;
+}
 `;
