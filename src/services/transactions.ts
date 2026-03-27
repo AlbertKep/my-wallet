@@ -3,7 +3,6 @@ import {
   collection,
   query,
   where,
-  limit,
   addDoc,
   serverTimestamp,
   type Timestamp,
@@ -28,7 +27,7 @@ export type TransactionWithId = Transaction & { transactionID: string };
 type TransactionsCallback = (snapshot: QuerySnapshot<DocumentData>) => void;
 
 export const subscribeToTransactions = (userID: string, callback: TransactionsCallback) => {
-  const transactionQuery = query(collection(db, "transactions"), where("userID", "==", userID), orderBy("createdAt", "desc"), limit(5));
+  const transactionQuery = query(collection(db, "transactions"), where("userID", "==", userID), orderBy("createdAt", "desc"));
 
   return onSnapshot(transactionQuery, callback);
 };
