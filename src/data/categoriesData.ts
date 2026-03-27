@@ -10,4 +10,7 @@ export const categories: Category[] = [
   { id: "entertainment", label: "Entertainment", icon: icons.entertainment },
   { id: "salary", label: "Salary", icon: icons.salary },
   { id: "transport", label: "Transport", icon: icons.transport },
+  { id: "health", label: "Health", icon: icons.health },
+  { id: "bills", label: "Bills", icon: icons.bills },
+  { id: "other", label: "Other", icon: icons.other },
 ];
