@@ -7,6 +7,8 @@ import { TextError } from "../../components/ui/TextError.styled.ts";
 import { FlexWrapper } from "../../components/ui/FlexWrapper.styled.ts";
 import { authValidate, type Errors } from "../../utils/validation/authValidate.ts";
 import { signInUser } from "../../services/auth.ts";
+import { showToast } from "../../utils/showToast.tsx";
+import success from "../../assets/icons/success.svg";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -30,6 +32,7 @@ const SignIn = () => {
       setError((prev) => ({ ...prev, general: authError }));
       return;
     }
+    showToast("You have successfully logged in", success);
     navigate("/dashboard");
   };
   return (
