@@ -7,12 +7,6 @@ export const FieldsWrapper = styled.div`
   padding-bottom: 0.4em;
 `;
 
-export const Label = styled.label`
-  display: block;
-  font-size: clamp(0.8rem, 0.8rem + 0.5vw, 2rem);
-  padding: 1em 0;
-`;
-
 export const Input = styled.input`
   background: transparent;
   border: none;
