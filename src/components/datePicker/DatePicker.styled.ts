@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const DateWrapper = styled.div`
   grid-area: date;
-  margin-top: 0.7em;
 `;
 export const Label = styled.label`
   display: block;
