@@ -2,21 +2,20 @@ import { useState } from "react";
 import { DropdownCategoryWrapper, SelectedCategory, DropdownArrow, CategoryList, CategoryItem } from "./DropdownCategory.styled.ts";
 import dropdownArrow from "../../assets/icons/dropdown_arrow.svg";
 import { type Category } from "../../data/categoriesData.ts";
-import { type TransactionFieldUpdate } from "../../pages/addTransaction/AddTransaction.tsx";
 
-type DropdownCategoryProps = {
+type DropdownCategoryProps<T> = {
   selectedCategory: string;
   categories: Category[];
-  updateField: ({ field, value }: TransactionFieldUpdate) => void;
+  updateField: (payload: T) => void;
 };
 
-const DropdownCategory: React.FC<DropdownCategoryProps> = ({ selectedCategory, categories, updateField }) => {
+const DropdownCategory = <T,>({ selectedCategory, categories, updateField }: DropdownCategoryProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const selectedCategoryOject = categories.find((cat) => cat.id === selectedCategory);
 
   const handleChooseCategory = (category: string) => {
-    updateField({ field: "category", value: category });
+    updateField({ field: "category", value: category } as T);
     setIsOpen((prev) => !prev);
   };
 
