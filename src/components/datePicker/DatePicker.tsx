@@ -1,22 +1,24 @@
-import { DateWrapper, Label, DateInput } from "./DatePicker.styled.ts";
-import { type TransactionFieldUpdate } from "../../pages/addTransaction/AddTransaction.tsx";
+import { DateWrapper, DateInput } from "./DatePicker.styled.ts";
+import { Label } from "../ui/Label.styled.ts";
 import { timestampToInputDate, inputDateToTimestamp } from "../../utils/dateConverters.ts";
 import type { Timestamp } from "firebase/firestore";
 
-type DatePickerProps = {
-  selectedDate: Timestamp;
-  updateField: ({ field, value }: TransactionFieldUpdate) => void;
+type DatePickerProps<T> = {
+  id: string;
+  label: string;
+  selectedDate: Timestamp | null;
+  updateField: (payload: T) => void;
 };
-const DatePicker: React.FC<DatePickerProps> = ({ selectedDate, updateField }) => {
+const DatePicker = <T,>({ id, label, selectedDate, updateField }: DatePickerProps<T>) => {
   return (
     <DateWrapper>
-      <Label htmlFor='date'>Date</Label>
+      <Label htmlFor={id}>{label}</Label>
       <DateInput
-        id='date'
+        id={id}
         type='date'
         name='date-start'
-        value={timestampToInputDate(selectedDate)}
-        onChange={(e) => updateField({ field: "date", value: inputDateToTimestamp(e.target.value) })}
+        value={selectedDate === null ? "" : timestampToInputDate(selectedDate)}
+        onChange={(e) => updateField({ field: id, value: inputDateToTimestamp(e.target.value) } as T)}
       />
     </DateWrapper>
   );
