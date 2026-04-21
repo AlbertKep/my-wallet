@@ -1,23 +1,21 @@
 import { TypeWrapper, TypeOption } from "./TransactionTypeToggle.styled.ts";
-import { type TransactionFieldUpdate } from "../../pages/addTransaction/AddTransaction.tsx";
+import { type TransactionType } from "../../data/transactionTypesData.ts";
 
-type TransactionTypeToggleProps = {
+type TransactionTypeToggleProps<T> = {
   selectedType: string;
-  updateField: ({ field, value }: TransactionFieldUpdate) => void;
+  types: TransactionType[];
+  updateField: (payload: T) => void;
 };
-const TransactionTypeToggle: React.FC<TransactionTypeToggleProps> = ({ selectedType, updateField }) => {
-  const isExpense = selectedType === "expense";
-
-  const selectType = (type: string) => updateField({ field: "type", value: type });
+const TransactionTypeToggle = <T,>({ selectedType, types, updateField }: TransactionTypeToggleProps<T>) => {
+  const selectType = (type: string) => updateField({ field: "type", value: type } as T);
 
   return (
     <TypeWrapper>
-      <TypeOption type='button' $active={isExpense} onClick={() => selectType("expense")}>
-        Expense
-      </TypeOption>
-      <TypeOption type='button' $active={!isExpense} onClick={() => selectType("income")}>
-        Income
-      </TypeOption>
+      {types?.map((type) => (
+        <TypeOption key={type.id} type='button' $active={type.id === selectedType} onClick={() => selectType(type.id)}>
+          {type.label}
+        </TypeOption>
+      ))}
     </TypeWrapper>
   );
 };
