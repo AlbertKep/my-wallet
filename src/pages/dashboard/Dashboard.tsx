@@ -1,17 +1,27 @@
+// styles
 import { MainSection } from "../../components/ui/MainSection.styled.ts";
+// components
 import BalanceSummary from "../../components/balanceSummary/BalanceSummary.tsx";
-import TransactionList from "../../components/transactionList/TransactionList.tsx";
-import { useTransactions } from "../../context/transactions/TransactionsContext.ts";
 import Loader from "../../components/loader/Loader.tsx";
+import EmptyWallet from "../../components/emptyWallet/EmptyWallet.tsx";
+import TransactionList from "../../components/transactionList/TransactionList.tsx";
+
+import { useTransactions } from "../../context/transactions/TransactionsContext.ts";
 
 const Dashboard = () => {
   const { transactions, loading } = useTransactions();
-
+  const isEmpty = transactions.length === 0;
   if (loading) return <Loader />;
   return (
     <MainSection>
-      <BalanceSummary transactions={transactions} />
-      <TransactionList transactions={transactions} />
+      {isEmpty ? (
+        <EmptyWallet />
+      ) : (
+        <>
+          <BalanceSummary transactions={transactions} />
+          <TransactionList transactions={transactions.slice(0, 5)} />
+        </>
+      )}
     </MainSection>
   );
 };
