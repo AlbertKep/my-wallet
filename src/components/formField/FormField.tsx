@@ -18,7 +18,7 @@ const FormField: React.FC<FormFieldsProps> = ({ id, name, label, type, value, cl
     <FieldsWrapper className={className}>
       <Label htmlFor={id}>{label}</Label>
       <Input type={type} id={id} name={name} value={value} onChange={(e) => onValueChange(e.target.value)} />
-      {error && <TextError $visible={!!error}>{error}</TextError>}
+      <TextError $visible={!!error}>{error}</TextError>
     </FieldsWrapper>
   );
 };
