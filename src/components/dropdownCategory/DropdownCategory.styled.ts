@@ -32,6 +32,8 @@ export const DropdownArrow = styled.img<{ $isOpen: boolean }>`
 export const CategoryList = styled.ul<{ $isOpen: boolean }>`
   position: absolute;
   top: 50%;
+  max-height: 250px;
+  overflow-y: auto;
   border-radius: 12px;
   background-color: ${({ theme }) => theme.colors.lightBeige};
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
