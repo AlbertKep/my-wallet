@@ -20,7 +20,7 @@ const DatePicker = <T,>({ id, label, selectedDate, error, updateField }: DatePic
         type='date'
         name='date-start'
         value={selectedDate === null ? "" : timestampToInputDate(selectedDate)}
-        onChange={(e) => updateField({ field: id, value: inputDateToTimestamp(e.target.value) } as T)}
+        onChange={(e) => updateField({ field: id, value: e.target.value === "" ? null : inputDateToTimestamp(e.target.value) } as T)}
       />
       <TextError $visible={!!error}>{error}</TextError>
     </DateWrapper>
