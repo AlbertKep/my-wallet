@@ -1,4 +1,6 @@
 import styled from "styled-components";
+// animation
+import { dropdownMotion } from "@/assets/styles/animations";
 
 export const DropdownCategoryWrapper = styled.div`
   position: relative;
@@ -38,12 +40,7 @@ export const CategoryList = styled.ul<{ $isOpen: boolean }>`
   background-color: ${({ theme }) => theme.colors.lightBeige};
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   z-index: 1;
-  opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
-  transform: translateY(${({ $isOpen }) => ($isOpen ? "0" : "-10px")});
-  pointer-events: ${({ $isOpen }) => ($isOpen ? "auto" : "none")};
-  transition:
-    opacity 0.35s ease,
-    transform 0.35s ease;
+  ${dropdownMotion}
 `;
 
 export const CategoryItem = styled.li`
