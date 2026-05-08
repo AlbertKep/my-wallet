@@ -14,6 +14,7 @@ export const formatDate = (seconds: number) => {
 };
 
 export const timestampToInputDate = (timestamp: Timestamp) => {
+  if (!timestamp || !timestamp.seconds) return "";
   const date = timestamp.toDate();
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
@@ -24,6 +25,5 @@ export const timestampToInputDate = (timestamp: Timestamp) => {
 
 export const inputDateToTimestamp = (dateString: string) => {
   const date = new Date(dateString);
-  console.log(Timestamp.fromDate(date));
   return Timestamp.fromDate(date);
 };
