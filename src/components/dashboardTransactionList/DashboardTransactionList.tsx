@@ -3,7 +3,7 @@ import { StyledSectionWrapper, ButtonWrapper } from "./TransactionList.styled.ts
 import { Heading } from "../ui/Heading.styled.ts";
 import TransactionItem from "../transactionItem/TransactionItem.tsx";
 import { Button } from "../ui/Button.styled.ts";
-import { type TransactionWithId } from "../../services/transactions.ts";
+import { type TransactionWithId } from "@/services/transactions.ts";
 
 type TransactionListProps = {
   transactions: TransactionWithId[];
