@@ -19,7 +19,7 @@ const Dashboard = () => {
       ) : (
         <>
           <BalanceSummary transactions={transactions} />
-          <TransactionList transactions={transactions.slice(0, 5)} />
+          <DashboardTransactionList transactions={transactions.slice(0, 5)} />
         </>
       )}
     </MainSection>
