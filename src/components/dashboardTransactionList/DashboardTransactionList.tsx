@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { StyledSectionWrapper, ButtonWrapper } from "./TransactionList.styled.ts";
+import { StyledSectionWrapper, ButtonWrapper } from "./DashboardTransactionList.styled.ts";
 import { Heading } from "../ui/Heading.styled.ts";
 import TransactionItem from "../transactionItem/TransactionItem.tsx";
 import { Button } from "../ui/Button.styled.ts";
