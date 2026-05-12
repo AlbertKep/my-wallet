@@ -5,4 +5,5 @@ export const Heading = styled.h3`
   color: ${({ theme }) => theme.colors.darkBlue};
   font-weight: 600;
   padding: 0.5em;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 `;
