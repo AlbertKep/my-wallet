@@ -20,8 +20,16 @@ type FiltersProps = {
   filterTransactionTypes: TransactionType[];
   isOpen: boolean;
   updateField: (update: FiltersFieldUpdate) => void;
+  applyFilters: () => void;
 };
-const Filters: React.FC<FiltersProps> = ({ selectedFilters, filterCategories, filterTransactionTypes, isOpen, updateField }) => {
+const Filters: React.FC<FiltersProps> = ({
+  selectedFilters,
+  filterCategories,
+  filterTransactionTypes,
+  isOpen,
+  updateField,
+  applyFilters,
+}) => {
   const [errors, setErrors] = useState<FiltersErrors>();
   const handleFiltersValidation = () => {
     setErrors({});
@@ -30,6 +38,7 @@ const Filters: React.FC<FiltersProps> = ({ selectedFilters, filterCategories, fi
       setErrors(errors);
       return;
     }
+    applyFilters();
   };
 
   return (
