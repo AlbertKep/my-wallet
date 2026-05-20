@@ -5,18 +5,19 @@ import { useAuth } from "@/context/auth/AuthContext.ts";
 // types
 import type { TransactionWithId } from "@/services/transactions.ts";
 import { type QueryDocumentSnapshot, type DocumentData } from "firebase/firestore";
+import type { FiltersField } from "../Transactions.tsx";
 
-const usePaginatedTransactions = () => {
+const usePaginatedTransactions = (filters: FiltersField) => {
   const { user } = useAuth();
   const [transactions, setTransactions] = useState<TransactionWithId[]>([]);
   const [lastVisible, setLastVisible] = useState<QueryDocumentSnapshot<DocumentData> | null>(null);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [loading, setLoading] = useState(false);
 
-  const fetchFirstPage = async (id: string) => {
+  const fetchFirstPage = async (id: string, filters: FiltersField) => {
     try {
       setLoading(true);
-      const { items, newLastVisible } = await getTransactionsPage(id, null);
+      const { items, newLastVisible } = await getTransactionsPage(id, null, filters);
       setTransactions(items);
       setLastVisible(newLastVisible);
       setHasMore(items.length === 5);
@@ -36,7 +37,7 @@ const usePaginatedTransactions = () => {
       if (loading || !hasMore || !lastVisible) return;
       setLoading(true);
       if (user) {
-        const { items, newLastVisible } = await getTransactionsPage(user?.uid, lastVisible);
+        const { items, newLastVisible } = await getTransactionsPage(user?.uid, lastVisible, filters);
         setTransactions((prev) => [...prev, ...items]);
         console.log(items);
         setLastVisible(newLastVisible);
@@ -54,8 +55,16 @@ const usePaginatedTransactions = () => {
   };
   useEffect(() => {
     if (!user) return;
-    fetchFirstPage(user.uid);
+    fetchFirstPage(user.uid, filters);
   }, [user]);
+
+  useEffect(() => {
+    setHasMore(true);
+    setLastVisible(null);
+    setTransactions([]);
+    if (!user) return;
+    fetchFirstPage(user.uid, filters);
+  }, [filters, user]);
 
   return { transactions, lastVisible, hasMore, fetchNextPage };
 };
