@@ -7,11 +7,14 @@ export const Navigation = styled.nav`
   display: flex;
   justify-content: center;
   margin: auto;
+  position: fixed;
+  bottom: 1em;
 
   ${({ theme }) => theme.mq.desktop} {
     height: clamp(400px, 70vh, 1000px);
     flex: 1;
     justify-content: normal;
+    position: static;
   }
 `;
 
