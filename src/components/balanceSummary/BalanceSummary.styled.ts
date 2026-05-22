@@ -7,13 +7,12 @@ export const Wrapper = styled.div`
   background: linear-gradient(135deg, #9435c7, #8e6eea);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   border-radius: 12px;
-  margin: 0 0.5em;
-  padding: 0 0.5em;
 
   ${({ theme }) => theme.mq.desktop} {
     width: 300px;
     flex-direction: column-reverse;
     justify-content: space-evenly;
+    margin-right: 1em;
   }
 `;
 export const TextWrapper = styled.div`
