@@ -7,17 +7,13 @@ import { dropdownMotion } from "@/assets/styles/animations";
 
 export const Wrapper = styled(Surface)<{ $isOpen: boolean }>`
   position: absolute;
-  /* top: 105%; */
-  left: 0.25em;
-  right: 0.25em;
+  left: 0;
+  right: 0;
+  top: 15%;
   z-index: 2;
   width: auto;
   padding: 0.75em;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-
-  ${({ theme }) => theme.mq.desktop} {
-    top: 15%;
-  }
   ${dropdownMotion}
 `;
 
