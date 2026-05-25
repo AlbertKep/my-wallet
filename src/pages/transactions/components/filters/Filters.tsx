@@ -19,6 +19,7 @@ type FiltersProps = {
   filterCategories: Category[];
   filterTransactionTypes: TransactionType[];
   isOpen: boolean;
+  setIsOpen: (value: boolean) => void;
   updateField: (update: FiltersFieldUpdate) => void;
   applyFilters: () => void;
 };
@@ -27,6 +28,7 @@ const Filters: React.FC<FiltersProps> = ({
   filterCategories,
   filterTransactionTypes,
   isOpen,
+  setIsOpen,
   updateField,
   applyFilters,
 }) => {
@@ -39,6 +41,7 @@ const Filters: React.FC<FiltersProps> = ({
       return;
     }
     applyFilters();
+    setIsOpen(false);
   };
 
   return (
