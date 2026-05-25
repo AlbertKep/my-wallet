@@ -66,7 +66,7 @@ const usePaginatedTransactions = (filters: FiltersField) => {
     fetchFirstPage(user.uid, filters);
   }, [filters, user]);
 
-  return { transactions, lastVisible, hasMore, fetchNextPage };
+  return { transactions, lastVisible, hasMore, fetchNextPage, loading };
 };
 
 export default usePaginatedTransactions;
