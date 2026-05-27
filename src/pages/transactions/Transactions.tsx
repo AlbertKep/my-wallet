@@ -1,15 +1,21 @@
 import { useState } from "react";
 // styles
-import { StyledMainSection, TransactionWrapper } from "./Transactions.styled.ts";
+import { StyledMainSection } from "./Transactions.styled.ts";
 // components
 import SelectedFilters from "./components/selectedFilters/SelectedFilters.tsx";
 import Filters from "./components/filters/Filters.tsx";
+import TransactionsList from "@/components/transactionsList/TransactionsList.tsx";
+import NoResults from "@/components/noResults/NoResults.tsx";
+import Loader from "@/components/loader/Loader.tsx";
+import ErrorState from "@/components/errorState/ErrorState.tsx";
 // types
 import { transactionTypes } from "../../data/transactionTypesData.ts";
 // svg icon
 import all from "../../assets/icons/transactionIcons/all.svg";
+// hooks
+import usePaginatedTransactions from "./hooks/usePaginatedTransactions.tsx";
 
-import { categories } from "../../data/categoriesData.ts";
+import { categories } from "@/data/categoriesData.ts";
 import { Timestamp } from "firebase/firestore";
 
 export type FiltersFieldUpdate = {
@@ -54,6 +60,8 @@ const Transactions = () => {
     { key: "max", label: "Max" },
   ];
 
+  const [activeFilters, setActiveFilters] = useState<FiltersField>(selectedFilters);
+
   const updateField = ({ field, value }: FiltersFieldUpdate) => {
     // if (field === "title" || field === "price") setErrors((prev) => ({ ...prev, [field]: "" }));
     setSelectedFilters((prev) => ({ ...prev, [field]: value }));
@@ -63,20 +71,37 @@ const Transactions = () => {
     return key === "from" || key === "to";
   };
 
+  const applyFilters = () => {
+    setActiveFilters(selectedFilters);
+  };
+  const { transactions, fetchNextPage, retry, loading, initialLoading, error } = usePaginatedTransactions(activeFilters);
+  const isEmpty = transactions.length === 0;
+  let content;
+
+  if (initialLoading) return <Loader />;
+  else if (error) {
+    content = <ErrorState message='Could not load transactions' onRetry={retry} />;
+  } else if (!loading && isEmpty) {
+    content = <NoResults />;
+  } else {
+    content = <TransactionsList transactions={transactions} fetchNextPage={fetchNextPage} />;
+  }
+
   return (
     <StyledMainSection>
       <SelectedFilters selectedFilters={selectedFilters} filtersToDisplay={filtersToDisplay} setIsOpen={setIsOpen} isDateKey={isDateKey} />
 
-      {isOpen && (
-        <Filters
-          selectedFilters={selectedFilters}
-          filterCategories={filterCategories}
-          filterTransactionTypes={filterTransactionTypes}
-          updateField={updateField}
-        />
-      )}
+      <Filters
+        selectedFilters={selectedFilters}
+        filterCategories={filterCategories}
+        filterTransactionTypes={filterTransactionTypes}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        updateField={updateField}
+        applyFilters={applyFilters}
+      />
 
-      <TransactionWrapper>Transakcje!!!</TransactionWrapper>
+      {content}
     </StyledMainSection>
   );
 };
