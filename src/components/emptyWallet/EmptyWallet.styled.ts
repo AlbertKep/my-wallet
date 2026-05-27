@@ -33,6 +33,7 @@ const shakeAnimation = () => css`
 
 export const ImgWrapper = styled.div`
   width: clamp(280px, 50%, 350px);
+  margin-top: 2em;
   ${shakeAnimation()}
 
   img {
