@@ -1,11 +1,18 @@
+// styles
 import { StyledItem, StyledPrice, ImageWrapper, InfoWrapper } from "./TransactionItem.styled.ts";
-import { type Transaction } from "../../services/transactions.ts";
-import { getCategoryIcon } from "../../utils/getCategoryIcon.ts";
-import { formatDate } from "../../utils/dateConverters.ts";
+// utils
+import { getCategoryIcon } from "@/utils/getCategoryIcon.ts";
+import { formatDate } from "@/utils/dateConverters.ts";
 
-const TransactionItem: React.FC<Transaction> = ({ category, title, date, price, type }) => {
+import { type Transaction } from "@/services/transactions.ts";
+
+type TransactionItemProps = Transaction & {
+  itemRef?: React.Ref<HTMLLIElement>;
+};
+
+const TransactionItem: React.FC<TransactionItemProps> = ({ category, title, date, price, type, itemRef }) => {
   return (
-    <StyledItem>
+    <StyledItem ref={itemRef}>
       <ImageWrapper>
         <img src={getCategoryIcon(category)} alt={category} />
       </ImageWrapper>
