@@ -2,42 +2,26 @@ import { useState, useEffect } from "react";
 import { useTheme } from "styled-components";
 import { Wrapper, TextWrapper, Heading, Balance, ChartWrapper } from "./BalanceSummary.styled.ts";
 import BalanceChart from "../balanceChart/BalanceChart.tsx";
-import { type TransactionWithId } from "../../services/transactions.ts";
 
-type TransactionListProps = {
-  transactions: TransactionWithId[];
-};
+import { type StatsResult } from "@/services/stats.ts";
 
 export type BalanceChartDataProps = {
   name: string;
-  value: number;
+  value: number | undefined;
   fill: string;
 };
-const BalanceSummary: React.FC<TransactionListProps> = ({ transactions }) => {
+const BalanceSummary: React.FC<StatsResult> = ({ totalIncome, totalExpense, balance }) => {
   const theme = useTheme();
-  const [balance, setBalance] = useState(0);
   const [balanceChartData, setBalanceChartData] = useState<BalanceChartDataProps[]>([]);
 
   useEffect(() => {
-    const getBalance = () => {
-      const { income, expense } = transactions.reduce(
-        (total: { income: number; expense: number }, currentValue) => {
-          if (currentValue.type === "income") total.income += currentValue.price;
-          if (currentValue.type === "expense") total.expense += currentValue.price;
-          return total;
-        },
-        { income: 0, expense: 0 },
-      );
-      setBalance(income - expense);
-      const data = [
-        { name: "income", value: income, fill: theme.colors.green },
-        { name: "expense", value: expense, fill: theme.colors.red },
-      ];
+    const data = [
+      { name: "income", value: totalIncome, fill: theme.colors.green },
+      { name: "expense", value: totalExpense, fill: theme.colors.red },
+    ];
 
-      setBalanceChartData(data);
-    };
-    getBalance();
-  }, [transactions]);
+    setBalanceChartData(data);
+  }, []);
 
   return (
     <Wrapper>
@@ -46,9 +30,7 @@ const BalanceSummary: React.FC<TransactionListProps> = ({ transactions }) => {
         <Balance>{balance} zł</Balance>
       </TextWrapper>
 
-      <ChartWrapper>
-        <BalanceChart isAnimationActive balanceChartData={balanceChartData} />
-      </ChartWrapper>
+      <ChartWrapper>{<BalanceChart isAnimationActive balanceChartData={balanceChartData} />}</ChartWrapper>
     </Wrapper>
   );
 };
