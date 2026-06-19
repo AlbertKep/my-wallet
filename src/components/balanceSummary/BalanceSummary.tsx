@@ -21,7 +21,7 @@ const BalanceSummary: React.FC<StatsResult> = ({ totalIncome, totalExpense, bala
     ];
 
     setBalanceChartData(data);
-  }, []);
+  }, [totalExpense, totalIncome]);
 
   return (
     <Wrapper>
