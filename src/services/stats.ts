@@ -31,7 +31,7 @@ export type StatsResult = {
   totalIncome: number;
   totalExpense: number;
   balance: number;
-  categoryStat: Stats[];
+  categoryStats: Stats[];
 };
 
 type StatsUpdatePatch = {
