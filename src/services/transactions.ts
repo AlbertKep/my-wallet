@@ -14,8 +14,11 @@ import {
   limit,
   getDocs,
   startAfter,
+  QueryConstraint,
 } from "firebase/firestore";
 
+import { userStatsController } from "./stats.ts";
+import type { FiltersField } from "@/pages/transactions/Transactions.tsx";
 export type Transaction = {
   category: string;
   date: Timestamp;
@@ -42,7 +45,9 @@ export const subscribeToTransactions = (userID: string, callback: TransactionsCa
 
 export const addTransaction = async (newTransaction: Transaction) => {
   try {
+    const { type, price, category } = newTransaction;
     await addDoc(collection(db, "transactions"), { ...newTransaction, createdAt: serverTimestamp(), updatedAt: serverTimestamp() });
+    userStatsController(newTransaction.userID, { type, price, category });
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message);
@@ -57,27 +62,39 @@ export const addTransaction = async (newTransaction: Transaction) => {
 export const getTransactionsPage = async (
   userID: string,
   lastVisible: QueryDocumentSnapshot<DocumentData> | null,
+  activeFilters: FiltersField,
 ): Promise<TransactionsPageResult> => {
-  try {
-    const transactionsPageQuery =
-      lastVisible === null
-        ? query(collection(db, "transactions"), where("userID", "==", userID), orderBy("createdAt", "desc"), limit(5))
-        : query(
-            collection(db, "transactions"),
-            where("userID", "==", userID),
-            orderBy("createdAt", "desc"),
-            startAfter(lastVisible),
-            limit(5),
-          );
+  const { from, to, category, type, min, max } = activeFilters;
 
-    const documentSnapshots = await getDocs(transactionsPageQuery);
+  const conditions: QueryConstraint[] = [where("userID", "==", userID)];
+  if (category !== "all") conditions.push(where("category", "==", category));
+  if (type !== "all") conditions.push(where("type", "==", type));
+
+  let filtersQuery = query(collection(db, "transactions"), ...conditions, orderBy("createdAt", "desc"), limit(5));
+
+  if (lastVisible !== null) {
+    filtersQuery = query(collection(db, "transactions"), ...conditions, orderBy("createdAt", "desc"), startAfter(lastVisible), limit(5));
+  }
+
+  try {
+    const documentSnapshots = await getDocs(filtersQuery);
     const items = documentSnapshots.docs.map((doc) => ({
       transactionID: doc.id,
       ...doc.data(),
     })) as TransactionWithId[];
 
+    const filteredItems = items.filter((item) => {
+      let pass = true;
+      if (from !== null && item.date < from) pass = false;
+
+      if (to !== null && item.date > to) pass = false;
+      if (min !== "" && item.price < Number(min)) pass = false;
+      if (max !== "" && item.price > Number(max)) pass = false;
+
+      return pass;
+    });
     const newLastVisible = documentSnapshots.docs.length > 0 ? documentSnapshots.docs[documentSnapshots.docs.length - 1] : null;
-    return { items, newLastVisible };
+    return { items: filteredItems, newLastVisible };
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message);
