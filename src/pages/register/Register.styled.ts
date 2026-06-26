@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "../../components/ui/Button.ts";
+import { Button } from "../../components/ui/Button.styled.ts";
 
 export const StyledForm = styled.form`
   margin: 2em 1em;
