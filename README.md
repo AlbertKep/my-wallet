@@ -5,7 +5,7 @@ The goal of the project is to practice clean component architecture, UI/UX patte
 
 ### 🚀 Live Demo
 
-(coming soon)
+[(My Wallet)](https://my-wallet-live.netlify.app/)
 
 ### 🛠️ Tech Stack
 
