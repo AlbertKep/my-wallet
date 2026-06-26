@@ -12,14 +12,21 @@ type StatsContextProps = {
   children: ReactNode;
 };
 
+const DEFAULT_STATS: StatsResult = {
+  totalIncome: 0,
+  totalExpense: 0,
+  balance: 0,
+  categoryStats: [],
+};
+
 export const StatsProvider: React.FC<StatsContextProps> = ({ children }) => {
-  const [stats, setStats] = useState<StatsResult | null>(null);
+  const [stats, setStats] = useState<StatsResult>(DEFAULT_STATS);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
 
   useEffect(() => {
     if (!user) {
-      setStats(null);
+      setStats(DEFAULT_STATS);
       return;
     }
 
@@ -29,6 +36,8 @@ export const StatsProvider: React.FC<StatsContextProps> = ({ children }) => {
       if (snapshot.exists()) {
         const items: StatsResult = snapshot.data() as StatsResult;
         setStats(items);
+      } else {
+        setStats(DEFAULT_STATS);
       }
 
       setLoading(false);

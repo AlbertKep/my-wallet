@@ -4,7 +4,7 @@ import { createContext, useContext } from "react";
 import { type StatsResult } from "@/services/stats.ts";
 
 interface StatsContextType {
-  stats: StatsResult | null;
+  stats: StatsResult;
   loading: boolean;
 }
 export const StatsContext = createContext<StatsContextType | undefined>(undefined);
