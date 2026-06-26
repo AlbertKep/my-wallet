@@ -46,10 +46,8 @@ The goal of the project is to practice clean component architecture, UI/UX patte
 
 #### Mobile
 
-<img src="public/screens/Dashboard_mobile.PNG" width="250" />
-<img src="public/screens/Add_mobile.PNG" width="250" />
-<img src="public/screens/Transactions_mobile.PNG" width="250" />
-<img src="public/screens/Filters_mobile.PNG" width="250" />
+<img src="public/screens/Dashboard_mobile.PNG" width="200" /> <img src="public/screens/Add_mobile.PNG" width="200" /> <img src="public/screens/Transactions_mobile.PNG" width="200" /> <img src="public/screens/Filters_mobile.PNG" width="200" />
+
 
 ### 🧪 Demo Account
 
