@@ -10,7 +10,10 @@ import { TextError } from "@/components/ui/TextError.styled.ts";
 // services
 import { registerUser } from "@/services/auth.ts";
 // utils
+import { showToast } from "@/utils/showToast.tsx";
 import { authValidate, type Errors } from "@/utils/validation/authValidate.ts";
+// icons
+import success from "@/assets/icons/success.svg";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -30,6 +33,7 @@ const Register = () => {
     }
 
     await registerUser(email, password);
+    showToast("You have successfully registered in", success);
     navigate("/dashboard");
   };
 
