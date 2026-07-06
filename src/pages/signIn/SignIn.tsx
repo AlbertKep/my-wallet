@@ -1,14 +1,19 @@
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import Form from "../../components/form/Form.tsx";
-import FormField from "../../components/formField/FormField.tsx";
-import AuthLinkHint from "../../components/authLinkHint/AuthLinkHint.tsx";
-import { TextError } from "../../components/ui/TextError.styled.ts";
-import { FlexWrapper } from "../../components/ui/FlexWrapper.styled.ts";
-import { authValidate, type Errors } from "../../utils/validation/authValidate.ts";
-import { signInUser } from "../../services/auth.ts";
-import { showToast } from "../../utils/showToast.tsx";
-import success from "../../assets/icons/success.svg";
+// components
+import AuthLinkHint from "@/components/authLinkHint/AuthLinkHint.tsx";
+import Form from "@/components/form/Form.tsx";
+import FormField from "@/components/formField/FormField.tsx";
+// styles
+import { FlexWrapper } from "@/components/ui/FlexWrapper.styled.ts";
+import { TextError } from "@/components/ui/TextError.styled.ts";
+// services
+import { signInUser } from "@/services/auth.ts";
+// utils
+import { showToast } from "@/utils/showToast.tsx";
+import { authValidate, type Errors } from "@/utils/validation/authValidate.ts";
+// icons
+import success from "@/assets/icons/success.svg";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -37,13 +42,21 @@ const SignIn = () => {
   };
   return (
     <FlexWrapper>
-      <Form handleSubmit={handleSubmit} submitLabel='Sign in'>
-        <FormField id='email' name='E-mail' label='email' type='text' value={email} onValueChange={handleEmailChange} error={error.email} />
+      <Form handleSubmit={handleSubmit} submitLabel="Sign in">
         <FormField
-          id='password'
-          name='Password'
-          label='password'
-          type='password'
+          id="email"
+          name="E-mail"
+          label="email"
+          type="text"
+          value={email}
+          onValueChange={handleEmailChange}
+          error={error.email}
+        />
+        <FormField
+          id="password"
+          name="Password"
+          label="password"
+          type="password"
           value={password}
           onValueChange={handlePasswordChange}
           error={error.password}
