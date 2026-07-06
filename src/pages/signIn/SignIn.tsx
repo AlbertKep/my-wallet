@@ -63,7 +63,11 @@ const SignIn = () => {
         />
         {error.general && <TextError $visible={!!error.general}>{error.general}</TextError>}
       </Form>
-      <AuthLinkHint message={"Have an account?"} linkText={"Register!"} linkTo={"/register"} />
+      <AuthLinkHint
+        message={"Don’t have an account?"}
+        linkText={"Register!"}
+        linkTo={"/register"}
+      />
     </FlexWrapper>
   );
 };
