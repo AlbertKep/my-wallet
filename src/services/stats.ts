@@ -1,15 +1,15 @@
-import { db } from "./firebase.ts";
 import {
-  type DocumentSnapshot,
   type DocumentData,
-  doc,
-  setDoc,
-  getDoc,
   DocumentReference,
-  updateDoc,
+  type DocumentSnapshot,
+  doc,
+  getDoc,
   increment,
   onSnapshot,
+  setDoc,
+  updateDoc,
 } from "firebase/firestore";
+import { db } from "./firebase.ts";
 // utils
 import { errorHandling } from "@/utils/errorHandling.ts";
 import { showToast } from "@/utils/showToast.tsx";
@@ -22,7 +22,7 @@ type TransactionStatsPayload = {
   category: string;
 };
 
-type Stats = {
+export type Stats = {
   categoryID: string;
   name: string;
   total: number;
@@ -43,7 +43,10 @@ type StatsUpdatePatch = {
 
 type StatsCallback = (snapshot: DocumentSnapshot<DocumentData>) => void;
 
-export const createUserStats = async (ref: DocumentReference<DocumentData>, { type, price, category }: TransactionStatsPayload) => {
+export const createUserStats = async (
+  ref: DocumentReference<DocumentData>,
+  { type, price, category }: TransactionStatsPayload,
+) => {
   const isIncome = type === "income";
   const isExpense = type === "expense";
 
@@ -51,7 +54,8 @@ export const createUserStats = async (ref: DocumentReference<DocumentData>, { ty
     totalIncome: isIncome ? price : 0,
     totalExpense: isExpense ? price : 0,
     balance: isIncome ? price : -price,
-    categoryStats: type === "expense" ? [{ categoryID: category, name: category, total: price }] : [],
+    categoryStats:
+      type === "expense" ? [{ categoryID: category, name: category, total: price }] : [],
   });
 };
 const prepareGlobalStatsUpdate = (type: string, price: number) => {
@@ -75,7 +79,8 @@ const prepareGlobalStatsUpdate = (type: string, price: number) => {
 const prepareCategoryStatsUpdate = (currentStats: Stats[], category: string, price: number) => {
   const isCategoryExists = currentStats?.find((cat: Stats) => cat.categoryID === category);
 
-  if (!isCategoryExists) return [...currentStats, { categoryID: category, name: category, total: price }];
+  if (!isCategoryExists)
+    return [...currentStats, { categoryID: category, name: category, total: price }];
 
   const updatedStats = currentStats?.map((stat) => {
     if (stat.categoryID === category) {
