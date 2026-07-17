@@ -13,6 +13,7 @@ declare module "styled-components" {
       warmBeige: string;
       lightPink: string;
       primaryViolet: string;
+      shadowViolet: string;
     };
     font: {
       family: {
