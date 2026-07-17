@@ -1,28 +1,25 @@
-import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 
 export const Navigation = styled.nav`
-  opacity: 0.6;
   width: 100%;
-  display: flex;
-  justify-content: center;
   margin: auto;
   position: fixed;
-  bottom: 1em;
+  bottom: 0;
 
   ${({ theme }) => theme.mq.desktop} {
+    display: flex;
     height: clamp(400px, 70vh, 1000px);
     flex: 1;
-    justify-content: normal;
+    opacity: 0.7;
     position: static;
   }
 `;
 
 export const List = styled.ul`
-  background-color: ${({ theme }) => theme.colors.darkBlue};
+  background-color: ${({ theme }) => theme.colors.shadowViolet};
   margin: 0;
   padding: 0.2em 1em;
-  border-radius: 25px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -32,6 +29,7 @@ export const List = styled.ul`
     flex-direction: column;
     justify-content: normal;
     padding-top: 1em;
+    border-radius: 12px;
   }
 `;
 
