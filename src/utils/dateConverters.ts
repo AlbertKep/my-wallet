@@ -1,6 +1,6 @@
 import { Timestamp } from "firebase/firestore";
 
-const formatter = new Intl.DateTimeFormat("pl-PL", {
+const dateFormatter = new Intl.DateTimeFormat("pl-PL", {
   year: "numeric",
   month: "long",
   day: "numeric",
@@ -8,9 +8,13 @@ const formatter = new Intl.DateTimeFormat("pl-PL", {
   minute: "numeric",
 });
 
+const timeFormatter = new Intl.DateTimeFormat("pl-PL", {
+  hour: "2-digit",
+  minute: "numeric",
+});
 export const formatDate = (seconds: number) => {
   const date = new Date(seconds * 1000);
-  return formatter.format(date) ?? "-";
+  return dateFormatter.format(date) ?? "-";
 };
 
 export const timestampToInputDate = (timestamp: Timestamp) => {
