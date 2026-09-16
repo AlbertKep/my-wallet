@@ -27,6 +27,11 @@ export const timestampToInputDate = (timestamp: Timestamp) => {
   return `${year}-${month < 10 ? "0" + month : month}-${day < 10 ? "0" + day : day}`;
 };
 
+export const timestampToHour = (seconds: number) => {
+  const date = new Date(seconds * 1000);
+  return timeFormatter.format(date) ?? "-";
+};
+
 export const inputDateToTimestamp = (dateString: string) => {
   const date = new Date(dateString);
   return Timestamp.fromDate(date);
