@@ -36,3 +36,9 @@ export const inputDateToTimestamp = (dateString: string) => {
   const date = new Date(dateString);
   return Timestamp.fromDate(date);
 };
+
+export const getStartDate = (range: number = 7) => {
+  const date = new Date();
+  date.setDate(date.getDate() - range);
+  return Math.floor(date.getTime() / 1000);
+};
