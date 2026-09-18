@@ -5,6 +5,7 @@ declare module "styled-components" {
     colors: {
       white: string;
       orange: string;
+      orangeSoft: string;
       yellow: string;
       darkBlue: string;
       red: string;
@@ -13,6 +14,7 @@ declare module "styled-components" {
       warmBeige: string;
       lightPink: string;
       primaryViolet: string;
+      primaryVioletSoft: string;
       shadowViolet: string;
     };
     font: {

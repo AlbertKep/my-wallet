@@ -4,6 +4,7 @@ export const theme: DefaultTheme = {
   colors: {
     white: "#FFFFFF",
     orange: "#FF9A31",
+    orangeSoft: "rgba(255, 154, 49, 0.5)",
     yellow: "#FFDC18",
     darkBlue: "#021F40",
     red: "#FF2031",
@@ -12,6 +13,7 @@ export const theme: DefaultTheme = {
     warmBeige: "#f3e2c7",
     lightPink: "#f48fb1",
     primaryViolet: "#b26bff",
+    primaryVioletSoft: "rgba(178, 107, 255, 0.3)",
     shadowViolet: "#2A253B",
   },
   font: {
