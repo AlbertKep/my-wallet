@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StatisticsWrapper = styled.div`
   overflow-y: auto;
-  max-height: 480px;
+  max-height: 500px;
   ${({ theme }) => theme.mq.bigDesktop} {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
