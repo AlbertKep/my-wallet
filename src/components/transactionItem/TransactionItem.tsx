@@ -1,10 +1,19 @@
 // styles
-import { StyledItem, StyledPrice, ImageWrapper, InfoWrapper } from "./TransactionItem.styled.ts";
+import {
+  ControllerWrapper,
+  ImageWrapper,
+  InfoWrapper,
+  StyledItem,
+  StyledPrice,
+} from "./TransactionItem.styled";
 // utils
-import { getCategoryIcon } from "@/utils/getCategoryIcon.ts";
-import { formatDate } from "@/utils/dateConverters.ts";
-
-import { type Transaction } from "@/services/transactions.ts";
+import { formatDate } from "@/utils/dateConverters";
+import { getCategoryIcon } from "@/utils/getCategoryIcon";
+// services
+import { type Transaction } from "@/services/transactions";
+// icons
+import edit from "@/assets/icons/edit.svg";
+import remove from "@/assets/icons/remove.svg";
 
 type TransactionItemProps = Transaction & {
   itemRef?: React.Ref<HTMLLIElement>;
