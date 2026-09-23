@@ -19,7 +19,14 @@ type TransactionItemProps = Transaction & {
   itemRef?: React.Ref<HTMLLIElement>;
 };
 
-const TransactionItem: React.FC<TransactionItemProps> = ({ category, title, date, price, type, itemRef }) => {
+const TransactionItem: React.FC<TransactionItemProps> = ({
+  category,
+  title,
+  date,
+  price,
+  type,
+  itemRef,
+}) => {
   return (
     <StyledItem ref={itemRef}>
       <ImageWrapper>
@@ -31,6 +38,14 @@ const TransactionItem: React.FC<TransactionItemProps> = ({ category, title, date
         <time>{formatDate(date.seconds)}</time>
       </InfoWrapper>
       <StyledPrice $type={type}>{price} zł</StyledPrice>
+      <ControllerWrapper>
+        <button>
+          <img src={edit} alt="edit transaction" />
+        </button>
+        <button>
+          <img src={remove} alt="remove transaction" />
+        </button>
+      </ControllerWrapper>
     </StyledItem>
   );
 };

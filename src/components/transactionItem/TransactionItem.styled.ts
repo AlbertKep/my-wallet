@@ -34,3 +34,26 @@ export const InfoWrapper = styled.div`
     opacity: 0.7;
   }
 `;
+
+export const ControllerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+
+  ${({ theme }) => theme.mq.desktop} {
+    flex-direction: row;
+    margin-right: 2em;
+  }
+  button {
+    width: 45px;
+    margin-right: 0.5em;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+`;
