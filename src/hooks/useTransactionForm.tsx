@@ -1,7 +1,10 @@
 import { useState } from "react";
 // types
 import type { TransactionForm, TransactionFieldUpdate } from "../types/transaction";
-import type { TransactionErrors } from "../utils/validation/transactionValidate";
+import {
+  transactionValidate,
+  type TransactionErrors,
+} from "../utils/validation/transactionValidate";
 export const useTransactionForm = ({
   category,
   date,
@@ -25,5 +28,10 @@ export const useTransactionForm = ({
     setTransaction((prev) => ({ ...prev, [field]: value }));
   };
 
-  return { transaction, errors, updateField };
+  const validateForm = () => {
+    const result = transactionValidate(transaction.title, transaction.price);
+    setErrors(result.hasErrors ? result.errors : undefined);
+    return !result.hasErrors;
+  };
+  return { transaction, errors, updateField, validateForm };
 };
