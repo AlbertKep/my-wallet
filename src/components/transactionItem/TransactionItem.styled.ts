@@ -45,7 +45,7 @@ export const ControllerWrapper = styled.div`
     margin-right: 2em;
   }
   button {
-    width: 45px;
+    width: 35px;
     margin-right: 0.5em;
 
     &:hover {
