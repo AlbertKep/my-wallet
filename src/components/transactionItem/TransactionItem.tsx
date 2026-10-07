@@ -9,40 +9,36 @@ import {
 // utils
 import { formatDate } from "@/utils/dateConverters";
 import { getCategoryIcon } from "@/utils/getCategoryIcon";
-// services
-import { type Transaction } from "@/services/transactions";
+// types
+import { type TransactionWithId } from "@/services/transactions";
+import { type ModalTypes } from "../transactionsList/TransactionsList";
 // icons
 import edit from "@/assets/icons/edit.svg";
 import remove from "@/assets/icons/remove.svg";
 
-type TransactionItemProps = Transaction & {
+type TransactionItemProps = {
   itemRef?: React.Ref<HTMLLIElement>;
+  transaction: TransactionWithId;
+  handleClick: (value: ModalTypes, transaction: TransactionWithId) => void;
 };
 
-const TransactionItem: React.FC<TransactionItemProps> = ({
-  category,
-  title,
-  date,
-  price,
-  type,
-  itemRef,
-}) => {
+const TransactionItem: React.FC<TransactionItemProps> = ({ transaction, itemRef, handleClick }) => {
   return (
     <StyledItem ref={itemRef}>
       <ImageWrapper>
-        <img src={getCategoryIcon(category)} alt={category} />
+        <img src={getCategoryIcon(transaction.category)} alt={transaction.category} />
       </ImageWrapper>
 
       <InfoWrapper>
-        <h5>{title}</h5>
-        <time>{formatDate(date.seconds)}</time>
+        <h5>{transaction.title}</h5>
+        <time>{formatDate(transaction.date.seconds)}</time>
       </InfoWrapper>
-      <StyledPrice $type={type}>{price} zł</StyledPrice>
+      <StyledPrice $type={transaction.type}>{transaction.price} zł</StyledPrice>
       <ControllerWrapper>
-        <button>
+        <button onClick={() => handleClick("edit", transaction)}>
           <img src={edit} alt="edit transaction" />
         </button>
-        <button>
+        <button onClick={() => handleClick("remove", transaction)}>
           <img src={remove} alt="remove transaction" />
         </button>
       </ControllerWrapper>
